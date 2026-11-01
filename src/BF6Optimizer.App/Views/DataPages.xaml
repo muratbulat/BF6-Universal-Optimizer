@@ -1,0 +1,158 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                    xmlns:vm="clr-namespace:BF6Optimizer.App.ViewModels"
+                    xmlns:loc="clr-namespace:BF6Optimizer.App.Localization">
+
+    <DataTemplate DataType="{x:Type vm:ProfilesViewModel}">
+        <Grid Style="{StaticResource PageRoot}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="{loc:Tr nav.profiles}" Style="{StaticResource PageTitle}" />
+            <TextBlock Grid.Row="1" Text="{loc:Tr sub.profiles}" Style="{StaticResource PageSubtitle}" />
+            <WrapPanel Grid.Row="2" Margin="0,0,0,10">
+                <ui:Button Style="{StaticResource PrimaryButton}" Content="{loc:Tr ui.profile_use}" Command="{Binding UseCommand}" Margin="0,0,6,6" AutomationProperties.AutomationId="ui.profile_use" />
+                <ui:Button Content="{loc:Tr ui.profile_save_current}" Command="{Binding SaveCurrentCommand}" Margin="0,0,6,6" AutomationProperties.AutomationId="ui.profile_save_current" />
+                <ui:Button Content="{loc:Tr ui.duplicate}" Command="{Binding DuplicateCommand}" Margin="0,0,6,6" AutomationProperties.AutomationId="ui.duplicate" />
+                <ui:Button Content="{loc:Tr ui.import}" Command="{Binding ImportCommand}" Margin="0,0,6,6" AutomationProperties.AutomationId="ui.import" />
+                <ui:Button Content="{loc:Tr ui.export}" Command="{Binding ExportCommand}" Margin="0,0,6,6" AutomationProperties.AutomationId="ui.export" />
+                <ui:Button Content="{loc:Tr ui.delete}" Command="{Binding DeleteCommand}" IsEnabled="{Binding CanEdit}" Margin="0,0,6,6" AutomationProperties.AutomationId="ui.delete" />
+            </WrapPanel>
+            <Grid Grid.Row="3">
+                <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="*" /></Grid.RowDefinitions>
+                <WrapPanel Margin="0,0,0,8">
+                    <ui:TextBox Text="{Binding EditName, UpdateSourceTrigger=PropertyChanged}" MinWidth="300" Margin="0,0,8,0" IsEnabled="{Binding CanEdit}" AutomationProperties.AutomationId="field.EditName" />
+                    <ui:Button Content="{loc:Tr ui.rename}" Command="{Binding RenameCommand}" IsEnabled="{Binding CanEdit}" AutomationProperties.AutomationId="ui.rename" />
+                </WrapPanel>
+                <TextBlock Grid.Row="1" Text="{Binding Message}" Style="{StaticResource Body}" Margin="0,0,0,8" AutomationProperties.AutomationId="profiles.message" />
+                <ListBox Grid.Row="2" ItemsSource="{Binding Profiles}" SelectedItem="{Binding Selected}" DisplayMemberPath="Name" AutomationProperties.AutomationId="field.Profiles" />
+            </Grid>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:BackupViewModel}">
+        <Grid Style="{StaticResource PageRoot}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="{loc:Tr nav.backup}" Style="{StaticResource PageTitle}" />
+            <TextBlock Grid.Row="1" Text="{loc:Tr sub.backup}" Style="{StaticResource PageSubtitle}" />
+            <WrapPanel Grid.Row="2" Margin="0,0,0,10">
+                <ui:Button Content="{loc:Tr ui.restore_latest}" Command="{Binding RestoreLatestCommand}" Margin="0,0,6,6" AutomationProperties.AutomationId="ui.restore_latest" />
+                <ui:Button Content="{loc:Tr ui.restore_baseline}" Command="{Binding RestoreBaselineCommand}" Margin="0,0,6,6" AutomationProperties.AutomationId="ui.restore_baseline" />
+                <ui:Button Content="{loc:Tr ui.restore_selected}" Command="{Binding RestoreSelectedCommand}" Margin="0,0,6,6" AutomationProperties.AutomationId="ui.restore_selected" />
+                <ui:Button Content="{loc:Tr ui.verify}" Command="{Binding VerifyCommand}" Margin="0,0,6,6" AutomationProperties.AutomationId="ui.verify" />
+                <ui:Button Content="{loc:Tr ui.add_legacy}" Command="{Binding AddLegacyFolderCommand}" Margin="0,0,6,6" AutomationProperties.AutomationId="ui.add_legacy" />
+                <ui:Button Content="{loc:Tr ui.open_backups}" Command="{Binding OpenFolderCommand}" Margin="0,0,6,6" AutomationProperties.AutomationId="ui.open_backups" />
+            </WrapPanel>
+            <TextBlock Grid.Row="3" Text="{Binding Message}" Style="{StaticResource Body}" Margin="0,0,0,8" AutomationProperties.AutomationId="backup.message" />
+            <ListBox Grid.Row="4" ItemsSource="{Binding Points}" SelectedItem="{Binding Selected}" HorizontalContentAlignment="Stretch" AutomationProperties.AutomationId="field.Points">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" MinWidth="130" /><ColumnDefinition Width="*" MinWidth="110" /><ColumnDefinition Width="60" /><ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Kind}" Style="{StaticResource Body}" />
+                            <TextBlock Grid.Column="1" Text="{Binding Created}" Style="{StaticResource Muted}" />
+                            <TextBlock Grid.Column="2" Text="{Binding Version}" Style="{StaticResource Muted}" />
+                            <StackPanel Grid.Column="3">
+                                <TextBlock Text="{Binding Files}" Style="{StaticResource Muted}" />
+                                <TextBlock Text="{Binding Note}" Style="{StaticResource Muted}" Foreground="{DynamicResource StatusMaybe}" Visibility="{Binding Note, Converter={StaticResource NullToVis}}" />
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:ReportsViewModel}">
+        <ScrollViewer Style="{StaticResource PageScroll}">
+            <Grid Style="{StaticResource PageRoot}">
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr nav.reports}" Style="{StaticResource PageTitle}" />
+                    <TextBlock Text="{loc:Tr sub.reports}" Style="{StaticResource PageSubtitle}" />
+                    <WrapPanel Margin="0,0,0,10">
+                        <ui:Button Content="{loc:Tr ui.open_logs}" Command="{Binding OpenLogsCommand}" Margin="0,0,6,6" AutomationProperties.AutomationId="ui.open_logs" />
+                        <ui:Button Content="{loc:Tr ui.open_reports}" Command="{Binding OpenReportsCommand}" Margin="0,0,6,6" AutomationProperties.AutomationId="ui.open_reports" />
+                        <ui:Button Content="{loc:Tr ui.open_backups}" Command="{Binding OpenBackupsCommand}" Margin="0,0,6,6" AutomationProperties.AutomationId="ui.open_backups" />
+                        <ui:Button Style="{StaticResource PrimaryButton}" Content="{loc:Tr ui.export_diag}" Command="{Binding ExportDiagnosticsCommand}" Margin="0,0,6,6" AutomationProperties.AutomationId="ui.export_diag" />
+                        <ui:Button Content="{loc:Tr ui.export_html}" Command="{Binding ExportAuditCommand}" CommandParameter="html" Margin="0,0,6,6" AutomationProperties.AutomationId="ui.export_html" />
+                        <ui:Button Content="{loc:Tr ui.export_json}" Command="{Binding ExportAuditCommand}" CommandParameter="json" Margin="0,0,6,6" AutomationProperties.AutomationId="ui.export_json" />
+                        <ui:Button Content="{loc:Tr ui.export_txt}" Command="{Binding ExportAuditCommand}" CommandParameter="txt" Margin="0,0,6,6" AutomationProperties.AutomationId="ui.export_txt" />
+                    </WrapPanel>
+                    <Border Style="{StaticResource Card}">
+                        <ItemsControl ItemsSource="{Binding Reports}" ItemTemplate="{StaticResource FactRow}" />
+                    </Border>
+                    <TextBlock Text="{loc:Tr ui.recent_log}" Style="{StaticResource Section}" />
+                    <ui:TextBox Text="{Binding LogText, Mode=OneWay}" IsReadOnly="True" FontFamily="Consolas" FontSize="11" Height="240"
+                                TextWrapping="NoWrap" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" AutomationProperties.AutomationId="field.LogText" />
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+        <ScrollViewer Style="{StaticResource PageScroll}">
+            <Grid Style="{StaticResource PageRoot}">
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr nav.settings}" Style="{StaticResource PageTitle}" Margin="0,0,0,16" />
+                    <Border Style="{StaticResource Card}">
+                        <WrapPanel>
+                            <StackPanel Margin="0,0,16,0">
+                                <TextBlock Text="{loc:Tr ui.language}" Style="{StaticResource Muted}" Margin="0,0,0,4" />
+                                <ComboBox ItemsSource="{Binding Languages}" SelectedIndex="{Binding LanguageIndex}" MinWidth="200" AutomationProperties.AutomationId="field.Languages" />
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBlock Text="{loc:Tr ui.theme}" Style="{StaticResource Muted}" Margin="0,0,0,4" />
+                                <ComboBox ItemsSource="{Binding Themes}" SelectedIndex="{Binding ThemeIndex}" MinWidth="200" AutomationProperties.AutomationId="field.Themes" />
+                            </StackPanel>
+                        </WrapPanel>
+                    </Border>
+                    <Border Style="{StaticResource Card}">
+                        <StackPanel>
+                            <TextBlock Text="{loc:Tr ui.bf6_folder}" Style="{StaticResource Section}" />
+                            <TextBlock Text="{Binding ManualFolder}" Style="{StaticResource Body}" Margin="0,0,0,8" />
+                            <WrapPanel>
+                                <ui:Button Content="{loc:Tr ui.pick_folder}" Command="{Binding PickProfileFolderCommand}" Margin="0,0,8,0" AutomationProperties.AutomationId="ui.pick_folder" />
+                                <ui:Button Content="{loc:Tr ui.auto_detect}" Command="{Binding ClearProfileFolderCommand}" AutomationProperties.AutomationId="ui.auto_detect" />
+                            </WrapPanel>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource Card}">
+                        <StackPanel>
+                            <TextBlock Text="{loc:Tr ui.storage_mode}" Style="{StaticResource Section}" />
+                            <TextBlock Text="{Binding StorageMode}" Style="{StaticResource Body}" />
+                            <TextBlock Text="{Binding DataFolder}" Style="{StaticResource Muted}" Margin="0,2,0,4" />
+                            <TextBlock Text="{loc:Tr ui.storage_note}" Style="{StaticResource Muted}" Margin="0,0,0,8" />
+                            <WrapPanel>
+                                <ui:Button Content="{loc:Tr ui.open_data}" Command="{Binding OpenDataFolderCommand}" Margin="0,0,8,0" AutomationProperties.AutomationId="ui.open_data" />
+                                <ui:Button Content="{loc:Tr ui.toggle_portable}" Command="{Binding TogglePortableCommand}" AutomationProperties.AutomationId="ui.toggle_portable" />
+                            </WrapPanel>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource Card}">
+                        <StackPanel>
+                            <TextBlock Text="{loc:Tr ui.perf_data}" Style="{StaticResource Section}" />
+                            <TextBlock Text="{loc:Tr ui.perf_data_note}" Style="{StaticResource Muted}" Margin="0,0,0,8" />
+                            <WrapPanel>
+                                <ui:Button Content="{loc:Tr ui.import}" Command="{Binding ImportPerformanceDataCommand}" Margin="0,0,8,0" AutomationProperties.AutomationId="ui.import" />
+                                <ui:Button Content="{loc:Tr ui.show_welcome}" Command="{Binding ShowWelcomeCommand}" AutomationProperties.AutomationId="ui.show_welcome" />
+                            </WrapPanel>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource Card}">
+                        <StackPanel>
+                            <TextBlock Text="{loc:Tr ui.about}" Style="{StaticResource Section}" />
+                            <TextBlock Text="{Binding ProductLine}" Style="{StaticResource Body}" />
+                            <TextBlock Text="{Binding AuthorLine}" Style="{StaticResource Body}" Margin="0,2,0,0" />
+                        </StackPanel>
+                    </Border>
+                    <TextBlock Text="{Binding Message}" Style="{StaticResource Body}" Foreground="{DynamicResource StatusMaybe}" />
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </DataTemplate>
+</ResourceDictionary>

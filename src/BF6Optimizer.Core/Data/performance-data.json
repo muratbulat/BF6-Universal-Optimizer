@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": "2026.1",
+  "note": "Estimated relative scores used only to choose settings. They are not benchmark measurements. Baseline values come from the v1.4.0 script.",
+  "defaults": { "unknown": 1.0, "integrated": 0.8, "RTX": 2.0, "RX": 2.0, "ARC": 1.7, "GTX": 1.2, "GT": 0.8, "MX": 0.8 },
+  "tiers": { "high": 3.8, "medium": 2.7, "low": 1.7 },
+  "minimumScore": 0.3,
+  "resolutionPenaltyPerDoubling": 0.60,
+  "laptop": {
+    "defaultPenalty": 0.40,
+    "nonNvidiaPenalty": 0.35,
+    "nvidiaByMaxPowerW": [
+      { "minWatts": 130, "penalty": 0.30 },
+      { "minWatts": 105, "penalty": 0.40 },
+      { "minWatts": 80, "penalty": 0.55 },
+      { "minWatts": 1, "penalty": 0.75 }
+    ]
+  },
+  "fpsCap": {
+    "margin": 3,
+    "qualityDesktop": 144,
+    "qualityLaptop": 120,
+    "balancedHigh": 180,
+    "balancedMedium": 165,
+    "balancedLow": 120,
+    "balancedHighScore": 3.5,
+    "balancedMediumScore": 2.5,
+    "cpuLimitedCeiling": 144
+  },
+  "cpu": { "limitedPhysicalCoresBelow": 6, "limitedLogicalCoresBelow": 8 },
+  "memory": { "lowRamGbBelow": 16 },
+  "texture": { "ultraMinVramGb": 16, "highMinVramGb": 10, "mediumMinVramGb": 8 },
+  "gpus": {
+    "RTX 5090": 5.5, "RTX 5080": 5.0, "RTX 5070 TI": 4.3, "RTX 5070": 4.0, "RTX 5060 TI": 3.4, "RTX 5060": 3.0, "RTX 5050": 2.2,
+    "RTX 4090": 5.2, "RTX 4080 SUPER": 4.7, "RTX 4080": 4.7, "RTX 4070 TI SUPER": 4.1, "RTX 4070 TI": 4.1, "RTX 4070 SUPER": 3.7, "RTX 4070": 3.7, "RTX 4060 TI": 3.1, "RTX 4060": 2.7, "RTX 4050": 2.1,
+    "RTX 3090 TI": 4.3, "RTX 3090": 4.0, "RTX 3080 TI": 3.8, "RTX 3080": 3.5, "RTX 3070 TI": 3.1, "RTX 3070": 2.9, "RTX 3060 TI": 2.6, "RTX 3060": 2.2, "RTX 3050": 1.6,
+    "RTX 2080 TI": 2.8, "RTX 2080 SUPER": 2.4, "RTX 2080": 2.4, "RTX 2070 SUPER": 2.1, "RTX 2070": 2.1, "RTX 2060 SUPER": 1.7, "RTX 2060": 1.7,
+    "RX 9070 XT": 4.6, "RX 9070": 4.1,
+    "RX 7900 XTX": 5.0, "RX 7900 XT": 4.4, "RX 7900 GRE": 3.8, "RX 7800 XT": 3.7, "RX 7700 XT": 3.2, "RX 7600 XT": 2.6, "RX 7600": 2.3,
+    "RX 6950 XT": 3.9, "RX 6900 XT": 3.7, "RX 6800 XT": 3.4, "RX 6800": 3.1, "RX 6750 XT": 2.8, "RX 6700 XT": 2.6, "RX 6650 XT": 2.2, "RX 6600 XT": 2.1, "RX 6600": 1.9,
+    "RX 5700 XT": 1.9, "RX 5600 XT": 1.6,
+    "ARC B580": 2.8, "ARC B570": 2.4, "ARC A770": 2.4, "ARC A750": 2.2, "ARC A580": 1.9, "ARC A380": 1.3
+  }
+}

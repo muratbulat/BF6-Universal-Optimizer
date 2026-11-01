@@ -1,0 +1,762 @@
+{
+    "schemaVersion":  1,
+    "catalogVersion":  "2026.11",
+    "note":  "Candidate locations only. Not a verified EA server list. Targets are AWS regional network probes, not Battlefield servers.",
+    "seedSource":  "http://ec2-reachability.amazonaws.com/prefixes-ipv4.json",
+    "seedRetrieved":  "2026-11-01",
+    "presets":  {
+                    "Turkey":  [
+                                   "eu-central-1",
+                                   "eu-west-3",
+                                   "eu-west-2",
+                                   "eu-west-1",
+                                   "eu-north-1",
+                                   "me-south-1"
+                               ],
+                    "Europe":  [
+                                   "eu-central-1",
+                                   "eu-west-3",
+                                   "eu-west-2",
+                                   "eu-west-1",
+                                   "eu-north-1"
+                               ],
+                    "NorthAmerica":  [
+                                         "us-east-1",
+                                         "us-east-2",
+                                         "us-west-1",
+                                         "us-west-2"
+                                     ],
+                    "SouthAmerica":  [
+                                         "sa-east-1",
+                                         "us-east-1"
+                                     ],
+                    "Asia":  [
+                                 "ap-northeast-1",
+                                 "ap-northeast-2",
+                                 "ap-southeast-1",
+                                 "ap-east-1"
+                             ],
+                    "Oceania":  [
+                                    "ap-southeast-2",
+                                    "ap-southeast-1"
+                                ]
+                },
+    "regions":  [
+                    {
+                        "code":  "eu-central-1",
+                        "group":  "EU",
+                        "city":  "Frankfurt, Germany",
+                        "provider":  "AWS",
+                        "provenance":  "Community reports and regional latency directories; not an EA inventory",
+                        "provenanceDate":  "2026-11-01",
+                        "confidence":  "Low",
+                        "seedTargets":  [
+                                            {
+                                                "ip":  "3.64.0.0",
+                                                "prefix":  "3.64.0.0/12"
+                                            },
+                                            {
+                                                "ip":  "3.120.0.0",
+                                                "prefix":  "3.120.0.0/14"
+                                            },
+                                            {
+                                                "ip":  "3.124.0.0",
+                                                "prefix":  "3.124.0.0/14"
+                                            },
+                                            {
+                                                "ip":  "18.153.7.254",
+                                                "prefix":  "18.153.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "18.156.0.0",
+                                                "prefix":  "18.156.0.0/14"
+                                            },
+                                            {
+                                                "ip":  "18.184.0.0",
+                                                "prefix":  "18.184.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "18.192.0.0",
+                                                "prefix":  "18.192.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "18.194.0.252",
+                                                "prefix":  "18.194.0.0/15"
+                                            }
+                                        ],
+                        "country":  "DE"
+                    },
+                    {
+                        "code":  "eu-west-3",
+                        "group":  "EU",
+                        "city":  "Paris, France",
+                        "provider":  "AWS",
+                        "provenance":  "Community reports and regional latency directories; not an EA inventory",
+                        "provenanceDate":  "2026-11-01",
+                        "confidence":  "Low",
+                        "seedTargets":  [
+                                            {
+                                                "ip":  "13.36.0.0",
+                                                "prefix":  "13.36.0.0/14"
+                                            },
+                                            {
+                                                "ip":  "15.188.0.0",
+                                                "prefix":  "15.188.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "15.224.0.0",
+                                                "prefix":  "15.224.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "15.236.0.0",
+                                                "prefix":  "15.236.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "35.180.0.253",
+                                                "prefix":  "35.180.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "35.181.0.0",
+                                                "prefix":  "35.181.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "51.44.0.0",
+                                                "prefix":  "51.44.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "51.45.0.0",
+                                                "prefix":  "51.45.0.0/16"
+                                            }
+                                        ],
+                        "country":  "FR"
+                    },
+                    {
+                        "code":  "eu-west-2",
+                        "group":  "EU",
+                        "city":  "London, United Kingdom",
+                        "provider":  "AWS",
+                        "provenance":  "Community reports and regional latency directories; not an EA inventory",
+                        "provenanceDate":  "2026-11-01",
+                        "confidence":  "Low",
+                        "seedTargets":  [
+                                            {
+                                                "ip":  "3.8.0.0",
+                                                "prefix":  "3.8.0.0/14"
+                                            },
+                                            {
+                                                "ip":  "13.40.0.0",
+                                                "prefix":  "13.40.0.0/14"
+                                            },
+                                            {
+                                                "ip":  "13.134.0.0",
+                                                "prefix":  "13.134.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "16.60.0.0",
+                                                "prefix":  "16.60.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "18.130.0.0",
+                                                "prefix":  "18.130.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "18.132.0.0",
+                                                "prefix":  "18.132.0.0/14"
+                                            },
+                                            {
+                                                "ip":  "18.168.0.0",
+                                                "prefix":  "18.168.0.0/14"
+                                            },
+                                            {
+                                                "ip":  "18.175.28.254",
+                                                "prefix":  "18.175.0.0/16"
+                                            }
+                                        ],
+                        "country":  "GB"
+                    },
+                    {
+                        "code":  "eu-west-1",
+                        "group":  "EU",
+                        "city":  "Dublin, Ireland",
+                        "provider":  "AWS",
+                        "provenance":  "Community reports and regional latency directories; not an EA inventory",
+                        "provenanceDate":  "2026-11-01",
+                        "confidence":  "Low",
+                        "seedTargets":  [
+                                            {
+                                                "ip":  "3.248.0.0",
+                                                "prefix":  "3.248.0.0/13"
+                                            },
+                                            {
+                                                "ip":  "18.200.0.0",
+                                                "prefix":  "18.200.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "18.201.2.254",
+                                                "prefix":  "18.201.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "18.202.0.0",
+                                                "prefix":  "18.202.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "34.240.0.253",
+                                                "prefix":  "34.240.0.0/13"
+                                            },
+                                            {
+                                                "ip":  "34.248.60.213",
+                                                "prefix":  "34.248.0.0/13"
+                                            },
+                                            {
+                                                "ip":  "46.51.178.50",
+                                                "prefix":  "46.51.128.0/18"
+                                            },
+                                            {
+                                                "ip":  "46.137.120.1",
+                                                "prefix":  "46.137.0.0/17"
+                                            }
+                                        ],
+                        "country":  "IE"
+                    },
+                    {
+                        "code":  "eu-north-1",
+                        "group":  "EU",
+                        "city":  "Stockholm, Sweden",
+                        "provider":  "AWS",
+                        "provenance":  "Community reports and regional latency directories; not an EA inventory",
+                        "provenanceDate":  "2026-11-01",
+                        "confidence":  "Low",
+                        "seedTargets":  [
+                                            {
+                                                "ip":  "13.48.0.0",
+                                                "prefix":  "13.48.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "13.50.0.254",
+                                                "prefix":  "13.50.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "13.51.0.0",
+                                                "prefix":  "13.51.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "13.53.128.254",
+                                                "prefix":  "13.53.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "13.60.0.0",
+                                                "prefix":  "13.60.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "13.62.0.0",
+                                                "prefix":  "13.62.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "16.16.0.0",
+                                                "prefix":  "16.16.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "16.170.0.0",
+                                                "prefix":  "16.170.0.0/15"
+                                            }
+                                        ],
+                        "country":  "SE"
+                    },
+                    {
+                        "code":  "me-south-1",
+                        "group":  "Middle East",
+                        "city":  "Bahrain",
+                        "provider":  "AWS",
+                        "provenance":  "Community reports and regional latency directories; not an EA inventory",
+                        "provenanceDate":  "2026-11-01",
+                        "confidence":  "Low",
+                        "seedTargets":  [
+                                            {
+                                                "ip":  "15.184.0.253",
+                                                "prefix":  "15.184.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "15.185.32.254",
+                                                "prefix":  "15.185.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "16.24.0.0",
+                                                "prefix":  "16.24.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "157.175.10.11",
+                                                "prefix":  "157.175.0.0/16"
+                                            }
+                                        ],
+                        "country":  "BH"
+                    },
+                    {
+                        "code":  "us-east-1",
+                        "group":  "North America",
+                        "city":  "Northern Virginia",
+                        "provider":  "AWS",
+                        "provenance":  "Community reports and regional latency directories; not an EA inventory",
+                        "provenanceDate":  "2026-11-01",
+                        "confidence":  "Low",
+                        "seedTargets":  [
+                                            {
+                                                "ip":  "3.80.0.0",
+                                                "prefix":  "3.80.0.0/12"
+                                            },
+                                            {
+                                                "ip":  "3.208.0.0",
+                                                "prefix":  "3.208.0.0/12"
+                                            },
+                                            {
+                                                "ip":  "3.224.0.0",
+                                                "prefix":  "3.224.0.0/12"
+                                            },
+                                            {
+                                                "ip":  "13.216.0.0",
+                                                "prefix":  "13.216.0.0/13"
+                                            },
+                                            {
+                                                "ip":  "18.204.0.0",
+                                                "prefix":  "18.204.0.0/14"
+                                            },
+                                            {
+                                                "ip":  "18.208.0.0",
+                                                "prefix":  "18.208.0.0/13"
+                                            },
+                                            {
+                                                "ip":  "18.232.0.0",
+                                                "prefix":  "18.232.0.0/14"
+                                            },
+                                            {
+                                                "ip":  "23.23.255.255",
+                                                "prefix":  "23.20.0.0/14"
+                                            }
+                                        ],
+                        "country":  "US"
+                    },
+                    {
+                        "code":  "us-east-2",
+                        "group":  "North America",
+                        "city":  "Ohio",
+                        "provider":  "AWS",
+                        "provenance":  "Community reports and regional latency directories; not an EA inventory",
+                        "provenanceDate":  "2026-11-01",
+                        "confidence":  "Low",
+                        "seedTargets":  [
+                                            {
+                                                "ip":  "3.12.0.0",
+                                                "prefix":  "3.12.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "3.13.0.254",
+                                                "prefix":  "3.13.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "3.14.0.0",
+                                                "prefix":  "3.14.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "3.16.0.0",
+                                                "prefix":  "3.16.0.0/14"
+                                            },
+                                            {
+                                                "ip":  "3.20.0.0",
+                                                "prefix":  "3.20.0.0/14"
+                                            },
+                                            {
+                                                "ip":  "3.128.0.0",
+                                                "prefix":  "3.128.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "3.130.0.254",
+                                                "prefix":  "3.130.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "3.131.0.0",
+                                                "prefix":  "3.131.0.0/16"
+                                            }
+                                        ],
+                        "country":  "US"
+                    },
+                    {
+                        "code":  "us-west-1",
+                        "group":  "North America",
+                        "city":  "Northern California",
+                        "provider":  "AWS",
+                        "provenance":  "Community reports and regional latency directories; not an EA inventory",
+                        "provenanceDate":  "2026-11-01",
+                        "confidence":  "Low",
+                        "seedTargets":  [
+                                            {
+                                                "ip":  "13.52.0.0",
+                                                "prefix":  "13.52.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "13.56.63.251",
+                                                "prefix":  "13.56.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "13.57.0.253",
+                                                "prefix":  "13.57.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "18.144.0.254",
+                                                "prefix":  "18.144.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "40.164.0.0",
+                                                "prefix":  "40.164.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "50.18.56.1",
+                                                "prefix":  "50.18.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "52.8.191.254",
+                                                "prefix":  "52.8.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "52.9.63.252",
+                                                "prefix":  "52.9.0.0/16"
+                                            }
+                                        ],
+                        "country":  "US"
+                    },
+                    {
+                        "code":  "us-west-2",
+                        "group":  "North America",
+                        "city":  "Oregon",
+                        "provider":  "AWS",
+                        "provenance":  "Community reports and regional latency directories; not an EA inventory",
+                        "provenanceDate":  "2026-11-01",
+                        "confidence":  "Low",
+                        "seedTargets":  [
+                                            {
+                                                "ip":  "16.144.0.0",
+                                                "prefix":  "16.144.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "16.145.0.0",
+                                                "prefix":  "16.145.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "16.146.0.0",
+                                                "prefix":  "16.146.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "16.147.0.0",
+                                                "prefix":  "16.147.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "16.148.0.0",
+                                                "prefix":  "16.148.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "18.236.0.0",
+                                                "prefix":  "18.236.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "18.246.28.254",
+                                                "prefix":  "18.246.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "32.184.0.0",
+                                                "prefix":  "32.184.0.0/13"
+                                            }
+                                        ],
+                        "country":  "US"
+                    },
+                    {
+                        "code":  "sa-east-1",
+                        "group":  "South America",
+                        "city":  "Sao Paulo, Brazil",
+                        "provider":  "AWS",
+                        "provenance":  "Community reports and regional latency directories; not an EA inventory",
+                        "provenanceDate":  "2026-11-01",
+                        "confidence":  "Low",
+                        "seedTargets":  [
+                                            {
+                                                "ip":  "15.228.0.0",
+                                                "prefix":  "15.228.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "18.228.0.0",
+                                                "prefix":  "18.228.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "18.229.0.0",
+                                                "prefix":  "18.229.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "18.230.0.0",
+                                                "prefix":  "18.230.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "18.231.0.252",
+                                                "prefix":  "18.231.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "52.67.255.254",
+                                                "prefix":  "52.67.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "54.20.0.0",
+                                                "prefix":  "54.20.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "54.94.0.66",
+                                                "prefix":  "54.94.0.0/17"
+                                            }
+                                        ],
+                        "country":  "BR"
+                    },
+                    {
+                        "code":  "ap-northeast-1",
+                        "group":  "Asia",
+                        "city":  "Tokyo, Japan",
+                        "provider":  "AWS",
+                        "provenance":  "Community reports and regional latency directories; not an EA inventory",
+                        "provenanceDate":  "2026-11-01",
+                        "confidence":  "Low",
+                        "seedTargets":  [
+                                            {
+                                                "ip":  "3.112.0.0",
+                                                "prefix":  "3.112.0.0/14"
+                                            },
+                                            {
+                                                "ip":  "13.112.63.251",
+                                                "prefix":  "13.112.0.0/14"
+                                            },
+                                            {
+                                                "ip":  "13.158.0.0",
+                                                "prefix":  "13.158.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "13.192.0.0",
+                                                "prefix":  "13.192.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "13.193.0.0",
+                                                "prefix":  "13.193.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "13.196.0.0",
+                                                "prefix":  "13.196.0.0/14"
+                                            },
+                                            {
+                                                "ip":  "13.230.0.253",
+                                                "prefix":  "13.230.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "16.76.0.0",
+                                                "prefix":  "16.76.0.0/16"
+                                            }
+                                        ],
+                        "country":  "JP"
+                    },
+                    {
+                        "code":  "ap-northeast-2",
+                        "group":  "Asia",
+                        "city":  "Seoul, South Korea",
+                        "provider":  "AWS",
+                        "provenance":  "Community reports and regional latency directories; not an EA inventory",
+                        "provenanceDate":  "2026-11-01",
+                        "confidence":  "Low",
+                        "seedTargets":  [
+                                            {
+                                                "ip":  "3.34.0.0",
+                                                "prefix":  "3.34.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "3.36.0.0",
+                                                "prefix":  "3.36.0.0/14"
+                                            },
+                                            {
+                                                "ip":  "13.124.63.251",
+                                                "prefix":  "13.124.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "13.125.0.253",
+                                                "prefix":  "13.125.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "13.209.0.0",
+                                                "prefix":  "13.209.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "15.164.0.0",
+                                                "prefix":  "15.164.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "16.184.0.0",
+                                                "prefix":  "16.184.0.0/18"
+                                            },
+                                            {
+                                                "ip":  "43.200.0.0",
+                                                "prefix":  "43.200.0.0/14"
+                                            }
+                                        ],
+                        "country":  "KR"
+                    },
+                    {
+                        "code":  "ap-southeast-1",
+                        "group":  "Asia",
+                        "city":  "Singapore",
+                        "provider":  "AWS",
+                        "provenance":  "Community reports and regional latency directories; not an EA inventory",
+                        "provenanceDate":  "2026-11-01",
+                        "confidence":  "Low",
+                        "seedTargets":  [
+                                            {
+                                                "ip":  "3.0.0.9",
+                                                "prefix":  "3.0.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "13.212.0.0",
+                                                "prefix":  "13.212.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "13.214.0.0",
+                                                "prefix":  "13.214.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "13.228.0.251",
+                                                "prefix":  "13.228.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "13.250.0.253",
+                                                "prefix":  "13.250.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "18.136.0.0",
+                                                "prefix":  "18.136.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "18.138.0.0",
+                                                "prefix":  "18.138.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "18.140.0.0",
+                                                "prefix":  "18.140.0.0/15"
+                                            }
+                                        ],
+                        "country":  "SG"
+                    },
+                    {
+                        "code":  "ap-east-1",
+                        "group":  "Asia",
+                        "city":  "Hong Kong",
+                        "provider":  "AWS",
+                        "provenance":  "Community reports and regional latency directories; not an EA inventory",
+                        "provenanceDate":  "2026-11-01",
+                        "confidence":  "Low",
+                        "seedTargets":  [
+                                            {
+                                                "ip":  "16.162.0.253",
+                                                "prefix":  "16.162.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "18.162.80.8",
+                                                "prefix":  "18.162.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "18.163.0.253",
+                                                "prefix":  "18.163.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "18.166.0.253",
+                                                "prefix":  "18.166.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "43.198.0.0",
+                                                "prefix":  "43.198.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "54.46.0.0",
+                                                "prefix":  "54.46.0.0/17"
+                                            },
+                                            {
+                                                "ip":  "95.40.0.0",
+                                                "prefix":  "95.40.0.0/15"
+                                            }
+                                        ],
+                        "country":  "HK"
+                    },
+                    {
+                        "code":  "ap-southeast-2",
+                        "group":  "Oceania",
+                        "city":  "Sydney, Australia",
+                        "provider":  "AWS",
+                        "provenance":  "Community reports and regional latency directories; not an EA inventory",
+                        "provenanceDate":  "2026-11-01",
+                        "confidence":  "Low",
+                        "seedTargets":  [
+                                            {
+                                                "ip":  "3.24.0.0",
+                                                "prefix":  "3.24.0.0/14"
+                                            },
+                                            {
+                                                "ip":  "3.104.0.0",
+                                                "prefix":  "3.104.0.0/14"
+                                            },
+                                            {
+                                                "ip":  "13.54.63.252",
+                                                "prefix":  "13.54.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "13.210.0.252",
+                                                "prefix":  "13.210.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "13.236.0.253",
+                                                "prefix":  "13.236.0.0/14"
+                                            },
+                                            {
+                                                "ip":  "15.134.0.0",
+                                                "prefix":  "15.134.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "15.135.0.0",
+                                                "prefix":  "15.135.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "16.176.0.0",
+                                                "prefix":  "16.176.0.0/16"
+                                            }
+                                        ],
+                        "country":  "AU"
+                    },
+                    {
+                        "code":  "af-south-1",
+                        "group":  "Africa",
+                        "city":  "Cape Town, South Africa",
+                        "provider":  "AWS",
+                        "provenance":  "Community reports and regional latency directories; not an EA inventory",
+                        "provenanceDate":  "2026-11-01",
+                        "confidence":  "Low",
+                        "seedTargets":  [
+                                            {
+                                                "ip":  "13.245.0.253",
+                                                "prefix":  "13.244.0.0/15"
+                                            },
+                                            {
+                                                "ip":  "13.246.0.0",
+                                                "prefix":  "13.246.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "13.247.0.0",
+                                                "prefix":  "13.247.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "15.240.0.0",
+                                                "prefix":  "15.240.0.0/16"
+                                            },
+                                            {
+                                                "ip":  "16.28.0.0",
+                                                "prefix":  "16.28.0.0/16"
+                                            }
+                                        ],
+                        "country":  "ZA"
+                    }
+                ]
+}

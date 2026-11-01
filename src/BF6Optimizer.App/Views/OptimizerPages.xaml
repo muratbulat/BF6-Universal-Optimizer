@@ -1,0 +1,178 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                    xmlns:vm="clr-namespace:BF6Optimizer.App.ViewModels"
+                    xmlns:loc="clr-namespace:BF6Optimizer.App.Localization">
+
+    <DataTemplate DataType="{x:Type vm:OptimizerViewModel}">
+        <ScrollViewer Style="{StaticResource PageScroll}">
+            <Grid Style="{StaticResource PageRoot}">
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr nav.optimizer}" Style="{StaticResource PageTitle}" />
+                    <TextBlock Text="{Binding ProfileNote}" Style="{StaticResource PageSubtitle}" />
+
+                    <Border Style="{StaticResource Card}">
+                        <StackPanel>
+                            <WrapPanel>
+                                <StackPanel Margin="0,0,16,8">
+                                    <TextBlock Text="{loc:Tr ui.mode}" Style="{StaticResource Muted}" Margin="0,0,0,4" />
+                                    <ComboBox ItemsSource="{Binding ModeNames}" SelectedIndex="{Binding ModeIndex}" MinWidth="220" AutomationProperties.AutomationId="field.ModeNames" />
+                                </StackPanel>
+                                <StackPanel Margin="0,0,16,8">
+                                    <TextBlock Text="{loc:Tr ui.objective}" Style="{StaticResource Muted}" Margin="0,0,0,4" />
+                                    <ComboBox ItemsSource="{Binding Objectives}" SelectedIndex="{Binding ObjectiveIndex}" MinWidth="240" AutomationProperties.AutomationId="field.Objectives" />
+                                </StackPanel>
+                            </WrapPanel>
+                            <CheckBox IsChecked="{Binding ApplyWindows}" Content="{loc:Tr ui.include_windows}" Margin="0,0,0,10" AutomationProperties.AutomationId="field.ApplyWindows" />
+                            <WrapPanel>
+                                <ui:Button Style="{StaticResource PrimaryButton}" Content="{loc:Tr ui.preview}" Command="{Binding PreviewCommand}" Margin="0,0,8,0" AutomationProperties.AutomationId="ui.preview" />
+                                <ui:Button Content="{loc:Tr ui.apply}" Command="{Binding ApplyCommand}" Visibility="{Binding CanApply, Converter={StaticResource BoolToVis}}" AutomationProperties.AutomationId="ui.apply" />
+                            </WrapPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource Card}" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVis}}">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Stage}" Style="{StaticResource Body}" Margin="0,0,0,6" />
+                            <ProgressBar Value="{Binding Percent}" Maximum="100" Height="6" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource Card}" Visibility="{Binding Result, Converter={StaticResource NullToVis}}">
+                        <TextBlock Text="{Binding Result}" Style="{StaticResource Body}" AutomationProperties.AutomationId="opt.result" />
+                    </Border>
+
+                    <ItemsControl ItemsSource="{Binding Warnings}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" Style="{StaticResource Body}" Foreground="{DynamicResource StatusMaybe}" Margin="0,0,0,4" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <StackPanel Visibility="{Binding HasPreview, Converter={StaticResource BoolToVis}}" Margin="0,8,0,0">
+                        <TextBlock Text="{loc:Tr ui.estimated_plan}" Style="{StaticResource Section}" />
+                        <TextBlock Text="{loc:Tr ui.estimate_disclaimer}" Style="{StaticResource Muted}" Margin="0,0,0,8" />
+                        <Border Style="{StaticResource Card}">
+                            <StackPanel>
+                                <ItemsControl ItemsSource="{Binding PlanFacts}" ItemTemplate="{StaticResource FactRow}" />
+                                <ItemsControl ItemsSource="{Binding Reasons}" Margin="0,8,0,0">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate><TextBlock Text="{Binding}" Style="{StaticResource Muted}" /></DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+
+                        <ItemsControl ItemsSource="{Binding Diffs}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource Card}">
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Path}" Style="{StaticResource Body}" FontWeight="SemiBold" />
+                                            <TextBlock Text="{Binding Detail}" Style="{StaticResource Muted}" Margin="0,0,0,8" />
+                                            <DataGrid Style="{StaticResource CompactDataGrid}" ItemsSource="{Binding Rows}" AutomationProperties.AutomationId="opt.diff">
+                                                <DataGrid.Columns>
+                                                    <DataGridTextColumn Header="{loc:Tr opt.setting}" Binding="{Binding Name}" Width="*" MinWidth="170" />
+                                                    <DataGridTextColumn Header="{loc:Tr opt.before}" Binding="{Binding Before}" Width="84" />
+                                                    <DataGridTextColumn Header="{loc:Tr opt.after}" Binding="{Binding After}" Width="84" />
+                                                    <DataGridTextColumn Header="{loc:Tr ui.status}" Binding="{Binding StatusText}" Width="Auto" MinWidth="110" />
+                                                    <DataGridTextColumn Header="{loc:Tr opt.purpose}" Binding="{Binding Purpose}" Width="2*" MinWidth="220" />
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:AdvancedViewModel}">
+        <ScrollViewer Style="{StaticResource PageScroll}">
+            <Grid Style="{StaticResource PageRoot}">
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr nav.advanced}" Style="{StaticResource PageTitle}" />
+                    <TextBlock Text="{loc:Tr sub.advanced}" Style="{StaticResource PageSubtitle}" />
+                    <Border Style="{StaticResource Card}">
+                        <StackPanel>
+                            <WrapPanel>
+                                <StackPanel Margin="0,0,16,8">
+                                    <TextBlock Text="{loc:Tr ui.base_mode}" Style="{StaticResource Muted}" Margin="0,0,0,4" />
+                                    <ComboBox ItemsSource="{Binding BaseModes}" SelectedIndex="{Binding BaseModeIndex}" MinWidth="200" AutomationProperties.AutomationId="field.BaseModes" />
+                                </StackPanel>
+                                <StackPanel Margin="0,0,16,8">
+                                    <TextBlock Text="{loc:Tr ui.fps_limiter}" Style="{StaticResource Muted}" Margin="0,0,0,4" />
+                                    <ComboBox ItemsSource="{Binding FpsModes}" SelectedIndex="{Binding FpsModeIndex}" MinWidth="200" AutomationProperties.AutomationId="field.FpsModes" />
+                                </StackPanel>
+                                <StackPanel Margin="0,0,16,8">
+                                    <TextBlock Text="{loc:Tr ui.fps_cap}" Style="{StaticResource Muted}" Margin="0,0,0,4" />
+                                    <ui:TextBox Text="{Binding FpsText, UpdateSourceTrigger=PropertyChanged}" MinWidth="120" AutomationProperties.AutomationId="field.FpsText" />
+                                </StackPanel>
+                            </WrapPanel>
+                            <TextBlock Text="{Binding FpsError}" Style="{StaticResource Body}" Foreground="{DynamicResource StatusBad}" />
+                            <TextBlock Text="{Binding CapHint}" Style="{StaticResource Muted}" />
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource Card}">
+                        <DataGrid Style="{StaticResource CompactDataGrid}" ItemsSource="{Binding Rows}" RowHeight="36" CanUserSortColumns="False" AutomationProperties.AutomationId="adv.grid">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="{loc:Tr net.ep.category}" Binding="{Binding Category}" Width="Auto" MinWidth="100" />
+                                <DataGridTextColumn Header="{loc:Tr opt.setting}" Binding="{Binding Name}" Width="*" MinWidth="170" />
+                                <DataGridTextColumn Header="{loc:Tr opt.before}" Binding="{Binding Current}" Width="84" />
+                                <DataGridTemplateColumn Header="{loc:Tr opt.after}" Width="170">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox ItemsSource="{Binding Options}" SelectedItem="{Binding Selected, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Label" IsEnabled="{Binding Editable}" MinHeight="28" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="{loc:Tr opt.note}" Binding="{Binding Note}" Width="*" MinWidth="130" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Border>
+                    <ui:Button Style="{StaticResource PrimaryButton}" Content="{loc:Tr ui.use_custom}" Command="{Binding UseCommand}" AutomationProperties.AutomationId="ui.use_custom" />
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:StatusViewModel}">
+        <ScrollViewer Style="{StaticResource PageScroll}">
+            <Grid Style="{StaticResource PageRoot}">
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr nav.status}" Style="{StaticResource PageTitle}" />
+                    <TextBlock Text="{Binding Headline}" Style="{StaticResource PageSubtitle}" AutomationProperties.AutomationId="status.headline" />
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                        <ui:Button Style="{StaticResource PrimaryButton}" Content="{loc:Tr ui.check_now}" Command="{Binding CheckCommand}" AutomationProperties.AutomationId="status.check" />
+                        <TextBlock Text="{Binding CheckedAt}" AutomationProperties.AutomationId="status.checked" Style="{StaticResource Muted}" VerticalAlignment="Center" Margin="12,0,0,0" />
+                    </StackPanel>
+                    <ProgressBar IsIndeterminate="True" Height="3" Margin="0,0,0,10" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVis}}" />
+                    <Border Style="{StaticResource Card}" Visibility="{Binding Hint, Converter={StaticResource NullToVis}}">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Hint}" Style="{StaticResource Body}" Margin="0,0,0,10" />
+                            <ui:Button Content="{loc:Tr nav.optimizer}" Command="{Binding OpenOptimizerCommand}" AutomationProperties.AutomationId="nav.optimizer" />
+                        </StackPanel>
+                    </Border>
+                    <ItemsControl ItemsSource="{Binding Counts}" ItemTemplate="{StaticResource InfoCard}" Visibility="{Binding HasRecord, Converter={StaticResource BoolToVis}}">
+                        <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                    <Border Style="{StaticResource Card}" Visibility="{Binding HasRecord, Converter={StaticResource BoolToVis}}">
+                        <DataGrid Style="{StaticResource CompactDataGrid}" ItemsSource="{Binding Rows}" AutomationProperties.AutomationId="status.grid">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="{loc:Tr net.col.source}" Binding="{Binding Source}" Width="Auto" MinWidth="130" />
+                                <DataGridTextColumn Header="{loc:Tr opt.setting}" Binding="{Binding Key}" Width="*" MinWidth="200" />
+                                <DataGridTextColumn Header="{loc:Tr opt.expected}" Binding="{Binding Expected}" Width="90" />
+                                <DataGridTextColumn Header="{loc:Tr opt.actual}" Binding="{Binding Actual}" Width="90" />
+                                <DataGridTextColumn Header="{loc:Tr ui.status}" Binding="{Binding State}" Width="Auto" MinWidth="130" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </DataTemplate>
+</ResourceDictionary>

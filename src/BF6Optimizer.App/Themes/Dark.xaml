@@ -1,0 +1,21 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Design tokens. Every view uses these keys; no view hard-codes a color. -->
+    <SolidColorBrush x:Key="AppBackground" Color="#10151B" />
+    <SolidColorBrush x:Key="SidebarBackground" Color="#171E26" />
+    <SolidColorBrush x:Key="CardBackground" Color="#1D2630" />
+    <SolidColorBrush x:Key="CardHover" Color="#26313D" />
+    <SolidColorBrush x:Key="CardBorder" Color="#33414E" />
+    <SolidColorBrush x:Key="TextPrimary" Color="#F1F3F5" />
+    <SolidColorBrush x:Key="TextMuted" Color="#9AA7B4" />
+    <SolidColorBrush x:Key="Accent" Color="#F36B32" />
+    <SolidColorBrush x:Key="AccentHover" Color="#FF824D" />
+    <SolidColorBrush x:Key="AccentSoft" Color="#26F36B32" />
+    <SolidColorBrush x:Key="AccentAlt" Color="#47B8C5" />
+    <SolidColorBrush x:Key="StatusGood" Color="#4EC994" />
+    <SolidColorBrush x:Key="StatusMaybe" Color="#EAB85A" />
+    <SolidColorBrush x:Key="StatusWarn" Color="#F0955A" />
+    <SolidColorBrush x:Key="StatusBad" Color="#ED6670" />
+    <SolidColorBrush x:Key="StatusNone" Color="#7F8C99" />
+    <SolidColorBrush x:Key="OverlayScrim" Color="#B8000000" />
+    <SolidColorBrush x:Key="OnAccent" Color="#10151B" />
+</ResourceDictionary>

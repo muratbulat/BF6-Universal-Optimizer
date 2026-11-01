@@ -1,0 +1,28 @@
+BF6 Universal Optimizer v1.4.0 - manual commands
+
+Analyze:
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\BF6_Universal_AutoOptimizer_v1.4.0.ps1" -Mode Analyze
+
+Apply:
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\BF6_Universal_AutoOptimizer_v1.4.0.ps1" -Mode Apply
+
+Status:
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\BF6_Universal_AutoOptimizer_v1.4.0.ps1" -Mode Status
+
+RestoreLast:
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\BF6_Universal_AutoOptimizer_v1.4.0.ps1" -Mode RestoreLast
+
+RestoreOriginal:
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\BF6_Universal_AutoOptimizer_v1.4.0.ps1" -Mode RestoreOriginal
+
+Apply Competitive:
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\BF6_Universal_AutoOptimizer_v1.4.0.ps1" -Mode Apply -Goal Competitive
+
+Apply Balanced:
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\BF6_Universal_AutoOptimizer_v1.4.0.ps1" -Mode Apply -Goal Balanced
+
+Apply Quality:
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\BF6_Universal_AutoOptimizer_v1.4.0.ps1" -Mode Apply -Goal Quality
+
+Override FPS cap (example 180):
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\BF6_Universal_AutoOptimizer_v1.4.0.ps1" -Mode Apply -FpsCap 180
