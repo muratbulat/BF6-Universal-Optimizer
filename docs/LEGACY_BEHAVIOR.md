@@ -1,6 +1,6 @@
-# v1.4.0 behavior and how 2.0 replaces it
+# PowerShell v1.4.0 behavior and its native replacement
 
-The original package is preserved unchanged in `Legacy/` (verified against its `SHA256SUMS.txt`). It is not used at runtime.
+This documents how the earlier PowerShell package (v1.4.0) maps onto this application. That package is no longer part of this repository, and nothing here depends on it. Backups it created can still be read and restored.
 
 ## Ported as-is
 
@@ -14,7 +14,7 @@ The original package is preserved unchanged in `Legacy/` (verified against its `
 
 ## Bugs found in the script and fixed
 
-| v1.4.0 | Effect | 2.0 |
+| v1.4.0 | Effect | Now |
 | --- | --- | --- |
 | Tested 8/9/10/14 against `PCSystemType` | Those are `ChassisTypes` numbers, so most laptops relied on the battery check and a UPS could mark a desktop as a laptop | Uses `ChassisTypes`; battery is not evidence |
 | Treated any `Arc` name as discrete | Core Ultra "Arc Graphics" iGPUs were ranked as gaming GPUs | Only `Arc A###/B###` is discrete |

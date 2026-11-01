@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+      - name: Build
+        run: dotnet build src/BF6Optimizer.App/BF6Optimizer.App.csproj -c Release
+      - name: Unit and integration tests
+        run: dotnet test tests/BF6Optimizer.Tests/BF6Optimizer.Tests.csproj -c Release --logger trx --results-directory TestResults
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: TestResults
+      # UI automation needs an interactive desktop and is run locally with scripts/run-full-qa.ps1.

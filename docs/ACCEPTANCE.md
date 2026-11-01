@@ -1,6 +1,6 @@
 # Acceptance results
 
-Tested against `Release\BF6Optimizer.exe` on the development PC (Windows 11 build 26300, Ryzen 7 9800X3D, RTX 5070 Ti) on 2026-11-01. The .NET SDK exists there per-user but was removed from `PATH` and `DOTNET_ROOT` for these runs.
+Tested against `Release\BF6Optimizer.exe` on the development PC (Windows 11, NVIDIA GPU) on 2026-11-01. The .NET SDK exists there per-user but was removed from `PATH` and `DOTNET_ROOT` for these runs.
 
 ## Verified on this PC
 
@@ -45,4 +45,4 @@ Tested against `Release\BF6Optimizer.exe` on the development PC (Windows 11 buil
 ## UI automation status (latest build)
 
 The FlaUI suite in `tests/BF6Optimizer.UiTests` has 44 tests. Its last complete run was on the previous build: 29 passed, 15 failed. Fixes for those failures are in, but the final rerun was stopped before finishing, so the current build has no complete UI result.
-Run `run-full-qa.ps1` in a VM: it opens the app about 45 times. Not executed at all: 3840x2160, Windows scaling above 100 %, moving between monitors of different DPI.
+Run `scripts\run-full-qa.ps1` in a VM: it opens the app about 45 times. Not executed at all: 3840x2160, Windows scaling above 100 %, moving between monitors of different DPI.
