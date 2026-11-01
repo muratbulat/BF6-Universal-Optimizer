@@ -127,7 +127,12 @@ public partial class App : Application
         s.AddSingleton<IProfileStore, JsonProfileStore>();
         s.AddSingleton<INetworkProbe, IcmpNetworkProbe>();
         s.AddSingleton<IPerformanceSampler, WmiPerformanceSampler>();
+#if DEBUG
+        if (test.SimulateHardware) s.AddSingleton<ISystemAuditCollector, DemoAuditCollector>();
+        else s.AddSingleton<ISystemAuditCollector, SystemAuditCollector>();
+#else
         s.AddSingleton<ISystemAuditCollector, SystemAuditCollector>();
+#endif
         s.AddSingleton<IAuditHistoryStore>(sp => new JsonAuditHistoryStore(paths, machine(sp)));
         s.AddSingleton<SafePreferenceActions>();
 

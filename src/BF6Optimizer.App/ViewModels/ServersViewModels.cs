@@ -158,9 +158,14 @@ public sealed partial class Bf6ServersViewModel : PageViewModel
 
     private ProbeProtocol Protocol => Enum.GetValues<ProbeProtocol>()[ProtocolIndex];
 
+    /// <summary>Demo mode shows documentation addresses, never the real network.</summary>
+    private static ConnectionSummary? CurrentConnection() => TestMode.Current.SimulateHardware
+        ? new ConnectionSummary("Demo Ethernet", "Ethernet", 1000, "192.0.2.1", ["192.0.2.53"], true, false)
+        : ConnectionInfo.Read();
+
     public override async Task OnShownAsync()
     {
-        var c = ConnectionInfo.Read();
+        var c = CurrentConnection();
         Connection.Replace(c is null ? [new Fact(L["ui.unavailable"], "")] :
         [
             new(L["net.adapter"], $"{c.Adapter} ({c.Type}, {c.LinkMbps} Mbps)"),
@@ -227,7 +232,7 @@ public sealed partial class Bf6ServersViewModel : PageViewModel
 
         try
         {
-            if (ConnectionInfo.Read()?.Gateway is { } gateway)
+            if (CurrentConnection()?.Gateway is { } gateway)
                 _gateway = await _n.Latency.MeasureAsync(new ProbeTarget(gateway), new MeasureOptions { Protocol = ProbeProtocol.Icmp, Samples = 5 }, null, _cts.Token);
 
             await _n.Latency.TestRegionsAsync(regions, code => all.Where(t => t.Region == code).ToList(), options, r => ui.Invoke(() =>
@@ -302,7 +307,7 @@ public sealed partial class Bf6ServersViewModel : PageViewModel
             Protocol = Protocol,
             Gateway = _gateway,
             ManualInGamePing = _manualPing,
-            WiFi = ConnectionInfo.Read()?.Type == "Wi-Fi",
+            WiFi = CurrentConnection()?.Type == "Wi-Fi",
         };
         Recommendations.Replace(NetworkRecommendationService.Evaluate(context, c => _n.Catalog.Find(c)?.City ?? c).Select(r => L.Get(r.Text)));
     }

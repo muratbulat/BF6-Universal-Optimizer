@@ -79,6 +79,10 @@ public sealed partial class OptimizerViewModel(PageServices s) : PageViewModel(s
         HasPreview = false;
     }
 
+    /// <summary>Demo mode hides the fixture location so documentation shows no local path.</summary>
+    private static string Shown(string path) =>
+        TestMode.Current.SimulateHardware && path.IndexOf("Battlefield 6", StringComparison.Ordinal) is >= 0 and var i ? path[i..] : path;
+
     private void UpdateProfileNote()
     {
         var p = S.State.Profiles;
@@ -116,7 +120,7 @@ public sealed partial class OptimizerViewModel(PageServices s) : PageViewModel(s
                 var (doc, sha) = await ProfileLoader.LoadAsync(S.Files, p.Path, CancellationToken.None);
                 var set = DiffBuilder.Build(p.Path, sha, doc, plan, S.Catalog);
                 targets.Add(set);
-                diffs.Add(new FileDiff(p.Path, $"{set.Encoding}, {set.NewLine} · {L.Format("ui.diff_counts", set.Changes.Count(c => c.Status == ChangeStatus.Change), set.Changes.Count)}",
+                diffs.Add(new FileDiff(Shown(p.Path), $"{set.Encoding}, {set.NewLine} · {L.Format("ui.diff_counts", set.Changes.Count(c => c.Status == ChangeStatus.Change), set.Changes.Count)}",
                     set.Changes.OrderBy(c => c.Status).Select(c => new ChangeRow(c, S.Catalog.Find(c.Key))).ToList()));
             }
             catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or OptimizerException)

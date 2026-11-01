@@ -34,7 +34,7 @@ public sealed class AppHarness : IDisposable
     public string Dir { get; } = Path.Combine(Path.GetTempPath(), "bf6ui_" + Guid.NewGuid().ToString("N")[..8]);
     public string DataDir => Path.Combine(Dir, "data");
     public string ExportDir => Path.Combine(Dir, "export");
-    public string Bf6Root => Path.Combine(Dir, "bf6");
+    public string Bf6Root => Environment.GetEnvironmentVariable("BF6_DEMO_ROOT") ?? Path.Combine(Dir, "bf6");
     public string ProfilePath => Path.Combine(Bf6Root, "Battlefield 6", "settings", "steam", "PROFSAVEbf6mp_profile");
 
     public Window Main { get; private set; } = null!;
@@ -62,7 +62,7 @@ public sealed class AppHarness : IDisposable
 
     public void Start()
     {
-        var args = $"--data-dir \"{DataDir}\" --bf6-dir \"{Bf6Root}\" --export-dir \"{ExportDir}\" --mock-network --mock-system";
+        var args = $"--data-dir \"{DataDir}\" --bf6-dir \"{Bf6Root}\" --export-dir \"{ExportDir}\" --mock-network --mock-system" + (Environment.GetEnvironmentVariable("BF6_DEMO_ROOT") is null ? "" : " --simulate-hardware");
         _process = Process.Start(new ProcessStartInfo(Exe, args) { WorkingDirectory = Path.GetDirectoryName(Exe) })!;
         _app = FlaUI.Core.Application.Attach(_process);
         Main = Retry.WhileNull(() => _app.GetMainWindow(_automation, TimeSpan.FromSeconds(2)), TimeSpan.FromSeconds(30), TimeSpan.FromMilliseconds(300)).Result
@@ -168,9 +168,9 @@ public sealed class AppHarness : IDisposable
         Thread.Sleep(350);
     }
 
-    public string Shot(string name)
+    public string Shot(string name, string? folder = null)
     {
-        var dir = Path.Combine(ArtifactDir, "screenshots");
+        var dir = folder ?? Path.Combine(ArtifactDir, "screenshots");
         Directory.CreateDirectory(dir);
         var path = Path.Combine(dir, name + ".png");
         Main.Focus();

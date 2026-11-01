@@ -183,22 +183,22 @@ public sealed class SimulatedHardwareDetector : IHardwareDetector
     public Task<HardwareSnapshot> DetectAsync(CancellationToken ct = default) => Task.FromResult(new HardwareSnapshot
     {
         IsSimulated = true,
-        Manufacturer = "Simulated",
+        Manufacturer = "Demo",
         Model = "Mixed GPU laptop",
         SystemFormFactor = FormFactor.Laptop,
         SystemFormFactorEvidence = "chassis",
-        Cpu = new CpuInfo("Simulated CPU", "Simulated", 8, 16, 4500),
+        Cpu = new CpuInfo("Demo 8-Core Processor", "Demo", 8, 16, 4500),
         Memory = new MemoryInfo(32L << 30, 5600),
-        Os = new OsInfo("Simulated Windows", "26100"),
+        Os = new OsInfo("Demo Windows 11", "26100"),
         Gpus =
         [
-            new GpuInfo { Id = "sim-1", Name = "NVIDIA GeForce RTX 4070 Laptop GPU", Vendor = GpuVendor.Nvidia, Kind = GpuKind.Discrete, FormFactor = FormFactor.Laptop, FormFactorEvidence = "name", DedicatedVramBytes = 8L << 30, VramSource = "Simulated", PowerMaxW = 115 },
-            new GpuInfo { Id = "sim-2", Name = "AMD Radeon 780M Graphics", Vendor = GpuVendor.Amd, Kind = GpuKind.Integrated, FormFactor = FormFactor.Laptop, DedicatedVramBytes = 2L << 30, VramSource = "Simulated" },
+            new GpuInfo { Id = "sim-1", Name = "NVIDIA GeForce RTX 4070 Laptop GPU", Vendor = GpuVendor.Nvidia, Kind = GpuKind.Discrete, FormFactor = FormFactor.Laptop, FormFactorEvidence = "name", DedicatedVramBytes = 8L << 30, VramSource = "Demo", PowerMaxW = 115 },
+            new GpuInfo { Id = "sim-2", Name = "AMD Radeon 780M Graphics", Vendor = GpuVendor.Amd, Kind = GpuKind.Integrated, FormFactor = FormFactor.Laptop, DedicatedVramBytes = 2L << 30, VramSource = "Demo" },
         ],
         Displays =
         [
-            new DisplayInfo("SIM1", "Simulated 240 Hz", 2560, 1440, 240, true),
-            new DisplayInfo("SIM2", "Simulated 60 Hz", 1920, 1080, 60, false),
+            new DisplayInfo("SIM1", "Demo 240 Hz", 2560, 1440, 240, true),
+            new DisplayInfo("SIM2", "Demo 60 Hz", 1920, 1080, 60, false),
         ],
     });
 }

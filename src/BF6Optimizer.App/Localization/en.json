@@ -49,7 +49,7 @@
   "welcome.start": "Get started",
 
   "ui.yes": "Yes", "ui.no": "No", "ui.cancel": "Cancel", "ui.close": "Close", "ui.save_as": "Save as...",
-  "ui.unavailable": "Unavailable", "ui.detecting": "Detecting hardware...", "ui.simulated_banner": "SIMULATION MODE: the hardware shown is not real.",
+  "ui.unavailable": "Unavailable", "ui.detecting": "Detecting hardware...", "ui.simulated_banner": "DEMO DATA: the hardware and measurements shown are not real.",
   "ui.quick_scan": "Quick Scan", "ui.full_scan": "Full System Audit", "ui.scan": "Scan", "ui.scan_quick": "quick scan", "ui.scan_full": "full audit",
   "ui.export": "Export", "ui.no_audit": "No scan yet. Start with a Quick Scan.", "ui.privacy_review": "Privacy review: content to be exported",
   "ui.health_score": "Gaming Configuration Health", "ui.coverage": "Assessment Coverage", "ui.previous_score": "Previous score",

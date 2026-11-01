@@ -344,16 +344,16 @@ public class DiagnosticsTests
     [Fact]
     public void Redactor_removes_user_paths_machine_and_guids()
     {
-        var r = new Redactor([(@"C:\Users\murat", "%USERPROFILE%"), ("murat", "<user>"), ("DESKTOP-X1", "<pc>")]);
-        var text = r.Apply(@"C:\Users\murat\Docs on DESKTOP-X1 by Murat id 12345678-1234-1234-1234-123456789abc");
+        var r = new Redactor([(@"C:\Users\samplename", "%USERPROFILE%"), ("samplename", "<user>"), ("DESKTOP-X1", "<pc>")]);
+        var text = r.Apply(@"C:\Users\samplename\Docs on DESKTOP-X1 by Samplename id 12345678-1234-1234-1234-123456789abc");
         Assert.Equal(@"%USERPROFILE%\Docs on <pc> by <user> id <guid>", text);
     }
 
     [Fact]
     public void Redactor_handles_json_escaped_paths()
     {
-        var r = new Redactor([(@"C:\Users\murat", "%USERPROFILE%")]);
-        Assert.Equal("{\"p\":\"%USERPROFILE%\\\\x\"}", r.Apply("{\"p\":\"C:\\\\Users\\\\murat\\\\x\"}"));
+        var r = new Redactor([(@"C:\Users\samplename", "%USERPROFILE%")]);
+        Assert.Equal("{\"p\":\"%USERPROFILE%\\\\x\"}", r.Apply("{\"p\":\"C:\\\\Users\\\\samplename\\\\x\"}"));
     }
 
     [Fact]

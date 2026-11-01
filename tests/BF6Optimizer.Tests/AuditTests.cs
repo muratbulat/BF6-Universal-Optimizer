@@ -405,15 +405,15 @@ public class AuditReportTests
     {
         var s = AuditFixtures.Healthy() with
         {
-            Windows = AuditFixtures.Healthy().Windows! with { Caption = @"C:\Users\murat 192.168.1.20" },
+            Windows = AuditFixtures.Healthy().Windows! with { Caption = @"C:\Users\samplename 192.168.1.20" },
         };
         var r = AuditFixtures.Eval(s);
-        var redactor = new Redactor([(@"C:\Users\murat", "%USERPROFILE%")]);
+        var redactor = new Redactor([(@"C:\Users\samplename", "%USERPROFILE%")]);
         var cmp = AuditReportExporter.Compare(null, r);
         foreach (var text in new[] { AuditReportExporter.ToJson(r, cmp, redactor), AuditReportExporter.ToHtml(r, cmp, Tr, redactor), AuditReportExporter.ToText(r, cmp, Tr, redactor) })
         {
             Assert.DoesNotContain("192.168.1.20", text);
-            Assert.DoesNotContain("murat", text);
+            Assert.DoesNotContain("samplename", text);
         }
     }
 

@@ -49,7 +49,7 @@
   "welcome.start": "Başla",
 
   "ui.yes": "Evet", "ui.no": "Hayır", "ui.cancel": "İptal", "ui.close": "Kapat", "ui.save_as": "Farklı kaydet...",
-  "ui.unavailable": "Kullanılamıyor", "ui.detecting": "Donanım algılanıyor...", "ui.simulated_banner": "BENZETİM MODU: Gösterilen donanım gerçek değildir.",
+  "ui.unavailable": "Kullanılamıyor", "ui.detecting": "Donanım algılanıyor...", "ui.simulated_banner": "DEMO VERİSİ: Gösterilen donanım ve ölçümler gerçek değildir.",
   "ui.quick_scan": "Hızlı Tarama", "ui.full_scan": "Tam Sistem Denetimi", "ui.scan": "Tarama", "ui.scan_quick": "hızlı tarama", "ui.scan_full": "tam denetim",
   "ui.export": "Dışa aktar", "ui.no_audit": "Henüz tarama yapılmadı. Hızlı Tarama ile başlayın.", "ui.privacy_review": "Gizlilik incelemesi: dışa aktarılacak içerik",
   "ui.health_score": "Oyun Yapılandırma Sağlığı", "ui.coverage": "Değerlendirme Kapsamı", "ui.previous_score": "Önceki skor",
