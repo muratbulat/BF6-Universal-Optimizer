@@ -8,7 +8,8 @@ copies the EXE to Release\ and writes a manifest to artifacts\. Exits nonzero on
 param([switch]$SkipTests)
 
 $ErrorActionPreference = 'Stop'
-Set-Location -LiteralPath $PSScriptRoot
+$repo = Split-Path -Parent $PSScriptRoot
+Set-Location -LiteralPath $repo
 
 function Fail([string]$Message) {
     Write-Host "[FAIL] $Message" -ForegroundColor Red
@@ -32,22 +33,22 @@ $env:DOTNET_CLI_TELEMETRY_OPTOUT = '1'
 $env:DOTNET_NOLOGO = '1'
 
 $project = 'src\BF6Optimizer.App\BF6Optimizer.App.csproj'
-$publishDir = Join-Path $PSScriptRoot 'artifacts\publish'
-$releaseDir = Join-Path $PSScriptRoot 'Release'
-$manifestPath = Join-Path $PSScriptRoot 'artifacts\release-manifest.json'
+$publishDir = Join-Path $repo 'artifacts\publish'
+$releaseDir = Join-Path $repo 'Release'
+$manifestPath = Join-Path $repo 'artifacts\release-manifest.json'
 
 Step 'Restoring NuGet packages'
 & $dotnet restore BF6Optimizer.sln
 Run 'Restore'
 
 Step 'Building Release'
-& $dotnet build BF6Optimizer.sln -c Release --no-restore -v q
+& $dotnet build src\BF6Optimizer.App\BF6Optimizer.App.csproj -c Release -v q
 Run 'Build'
 
 $testSummary = 'skipped'
 if (-not $SkipTests) {
     Step 'Running automated tests'
-    & $dotnet test tests\BF6Optimizer.Tests\BF6Optimizer.Tests.csproj -c Release --no-build
+    & $dotnet test tests\BF6Optimizer.Tests\BF6Optimizer.Tests.csproj -c Release
     Run 'Tests'
     $testSummary = 'passed'
 }
@@ -95,4 +96,5 @@ if ((Get-FileHash -Algorithm SHA256 -LiteralPath $copy).Hash -ne $hash) { Fail '
 
 Write-Host "[ OK ] Release\BF6Optimizer.exe  $sizeMb MB" -ForegroundColor Green
 Write-Host "[ OK ] SHA-256 $hash" -ForegroundColor Green
+"$hash *BF6Optimizer.exe" | Set-Content -LiteralPath (Join-Path $releaseDir 'SHA256SUMS.txt') -Encoding Ascii
 Write-Host "[ OK ] Manifest: artifacts\release-manifest.json" -ForegroundColor Green

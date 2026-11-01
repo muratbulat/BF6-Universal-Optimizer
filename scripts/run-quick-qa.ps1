@@ -6,7 +6,8 @@ Add -Ui for the main-window and navigation smoke tests, which open the app sever
 param([switch]$Ui)
 
 $ErrorActionPreference = 'Stop'
-Set-Location -LiteralPath $PSScriptRoot
+$repo = Split-Path -Parent $PSScriptRoot
+Set-Location -LiteralPath $repo
 $dotnet = (Get-Command dotnet -ErrorAction SilentlyContinue).Source
 if (-not $dotnet) { $dotnet = Join-Path $env:LOCALAPPDATA 'Microsoft\dotnet\dotnet.exe' }
 

@@ -8,10 +8,11 @@ Writes tests\artifacts\TestResults.json, TestReport.html and screenshots. Exits 
 param()
 
 $ErrorActionPreference = 'Stop'
-Set-Location -LiteralPath $PSScriptRoot
+$repo = Split-Path -Parent $PSScriptRoot
+Set-Location -LiteralPath $repo
 $dotnet = (Get-Command dotnet -ErrorAction SilentlyContinue).Source
 if (-not $dotnet) { $dotnet = Join-Path $env:LOCALAPPDATA 'Microsoft\dotnet\dotnet.exe' }
-$out = Join-Path $PSScriptRoot 'tests\artifacts'
+$out = Join-Path $repo 'tests\artifacts'
 $raw = Join-Path $out 'raw'
 if (Test-Path -LiteralPath $out) { Remove-Item -LiteralPath $out -Recurse -Force }
 
