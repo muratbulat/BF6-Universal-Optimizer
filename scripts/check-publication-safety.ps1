@@ -26,7 +26,8 @@ $secretPatterns = @{
 # Values taken from this machine at run time, so the script itself stores none of them.
 $local = @{}
 if ($env:USERPROFILE) { $local['profile path'] = [regex]::Escape($env:USERPROFILE); $local['profile path (slashes)'] = [regex]::Escape($env:USERPROFILE.Replace('\', '/')) }
-if ($env:COMPUTERNAME) { $local['computer name'] = '\b' + [regex]::Escape($env:COMPUTERNAME) + '\b' }
+# Very short names match ordinary text, so they are not usable as a signal.
+if ($env:COMPUTERNAME.Length -ge 4) { $local['computer name'] = '\b' + [regex]::Escape($env:COMPUTERNAME) + '\b' }
 $local['workspace path'] = [regex]::Escape($repo)
 $local['documents path'] = [regex]::Escape([Environment]::GetFolderPath('MyDocuments'))
 foreach ($n in [Net.NetworkInformation.NetworkInterface]::GetAllNetworkInterfaces()) {
