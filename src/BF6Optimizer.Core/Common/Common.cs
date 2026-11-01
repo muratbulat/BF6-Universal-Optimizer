@@ -37,7 +37,7 @@ public sealed class SystemClock : IClock
 
 public static class AppInfo
 {
-    public const string Version = "0.1.0-beta.1";
+    public const string Version = "0.1.0-beta.2";
     public const string ProductName = "BF6 Universal Optimizer";
     public const string Author = "Murat Bulat";
 }

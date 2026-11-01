@@ -3,7 +3,7 @@
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Version>0.1.0-beta.1</Version>
+    <Version>0.1.0-beta.2</Version>
     <Authors>Murat Bulat</Authors>
     <Company>Murat Bulat</Company>
     <Product>BF6 Universal Optimizer</Product>

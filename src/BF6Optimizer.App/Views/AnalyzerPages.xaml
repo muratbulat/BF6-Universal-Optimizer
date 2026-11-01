@@ -177,7 +177,11 @@
                 <StackPanel>
                     <TextBlock Text="{loc:Tr nav.hardware}" Style="{StaticResource PageTitle}" />
                     <TextBlock Text="{loc:Tr sub.hardware}" Style="{StaticResource PageSubtitle}" />
-                    <ui:Button Content="{loc:Tr ui.rescan}" Command="{Binding RescanCommand}" Margin="0,0,0,12" AutomationProperties.AutomationId="ui.rescan" />
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                        <ui:Button Content="{loc:Tr ui.rescan}" Command="{Binding RescanCommand}" AutomationProperties.AutomationId="ui.rescan" />
+                        <TextBlock Text="{Binding RescanResult}" Style="{StaticResource Muted}" VerticalAlignment="Center" TextWrapping="NoWrap" Margin="12,0,0,0" AutomationProperties.AutomationId="hardware.result" />
+                    </StackPanel>
+                    <ProgressBar IsIndeterminate="True" Height="3" Margin="0,0,0,8" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVis}}" />
                     <Border Style="{StaticResource Card}">
                         <StackPanel>
                             <TextBlock Text="{loc:Tr ui.gaming_gpu}" Style="{StaticResource Section}" />

@@ -3,7 +3,7 @@ Developer only. Publishes this repository and its release. Run after `gh auth lo
 Stops on any failed check. Never force-pushes and never overwrites a tag or release.
 #>
 [CmdletBinding()]
-param([string]$Tag = 'v0.1.0-beta.1')
+param([string]$Tag = 'v0.1.0-beta.2')
 
 $ErrorActionPreference = 'Stop'
 $repo = Split-Path -Parent $PSScriptRoot

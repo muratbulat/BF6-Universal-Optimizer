@@ -1,4 +1,8 @@
 # Changelog
+n## 0.1.0-beta.2
+
+- Fix Gaming GPU and Gaming display dropdowns emptying after Detect again
+- Show a result, progress and errors for Detect again
 
 ## 0.1.0-beta.1
 

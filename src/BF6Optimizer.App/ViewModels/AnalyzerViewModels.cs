@@ -232,6 +232,7 @@ public sealed partial class DisplayTools(PageServices s) : ObservableObject
         get => s.State.Display;
         set
         {
+            if (value is null) return;
             s.State.SelectDisplay(value);
             OnPropertyChanged();
             OnPropertyChanged(nameof(CapText));
@@ -449,18 +450,33 @@ public sealed partial class HardwareViewModel(PageServices s) : PageViewModel(s)
 
     [ObservableProperty] public partial bool IsBusy { get; set; }
     [ObservableProperty] public partial string HagsNote { get; set; } = "";
+    [ObservableProperty] public partial string RescanResult { get; set; } = "";
 
     public GpuInfo? SelectedGpu
     {
         get => S.State.Gpu;
-        set { S.State.SelectGpu(value); OnPropertyChanged(); }
+        set
+        {
+            if (_filling || value is null) return;
+            S.State.SelectGpu(value);
+            OnPropertyChanged();
+        }
     }
 
     public DisplayInfo? SelectedDisplay
     {
         get => S.State.Display;
-        set { S.State.SelectDisplay(value); OnPropertyChanged(); }
+        set
+        {
+            if (_filling || value is null) return;
+            S.State.SelectDisplay(value);
+            OnPropertyChanged();
+        }
     }
+
+    // Reloading a list clears the ComboBox selection. That null must not reach the bindings,
+    // or the current choice is lost once the new items arrive.
+    private bool _filling;
 
     public override Task OnShownAsync()
     {
@@ -474,8 +490,17 @@ public sealed partial class HardwareViewModel(PageServices s) : PageViewModel(s)
     {
         var hw = S.State.Hardware;
         if (hw is null) return;
-        Gpus.Replace(hw.Gpus);
-        Displays.Replace(hw.Displays);
+        _filling = true;
+        if (!Gpus.SequenceEqual(hw.Gpus)) Gpus.Replace(hw.Gpus);
+        if (!Displays.SequenceEqual(hw.Displays)) Displays.Replace(hw.Displays);
+        _filling = false;
+
+        // The ComboBox finishes reacting to a reload after this call, so reselect once it has settled.
+        System.Windows.Application.Current.Dispatcher.BeginInvoke(() =>
+        {
+            OnPropertyChanged(nameof(SelectedGpu));
+            OnPropertyChanged(nameof(SelectedDisplay));
+        }, System.Windows.Threading.DispatcherPriority.Background);
         OnPropertyChanged(nameof(SelectedGpu));
         OnPropertyChanged(nameof(SelectedDisplay));
 
@@ -504,6 +529,12 @@ public sealed partial class HardwareViewModel(PageServices s) : PageViewModel(s)
         {
             await S.State.RefreshHardwareAsync();
             Fill();
+            var hw = S.State.Hardware;
+            RescanResult = L.Format("ui.rescan_done", hw?.Gpus.Count ?? 0, hw?.Displays.Count ?? 0, DateTime.Now.ToString("T"));
+        }
+        catch (Exception ex) when (ex is not OutOfMemoryException)
+        {
+            RescanResult = L["ui.rescan_failed"];
         }
         finally { IsBusy = false; }
     }

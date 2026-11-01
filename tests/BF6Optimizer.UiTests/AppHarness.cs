@@ -155,6 +155,18 @@ public sealed class AppHarness : IDisposable
         Thread.Sleep(250);
     }
 
+    /// <summary>Items only exist once the list has been opened, so read the selection while expanded.</summary>
+    public string? Selected(string id)
+    {
+        var box = Get(id).AsComboBox();
+        box.Patterns.ExpandCollapse.Pattern.Expand();
+        Thread.Sleep(200);
+        var text = box.SelectedItem?.Text;
+        box.Patterns.ExpandCollapse.Pattern.Collapse();
+        Thread.Sleep(150);
+        return text;
+    }
+
     public int Rows(string id) => Get(id).Patterns.Grid.Pattern.RowCount.Value;
 
     public void SelectRow(string id, int index) =>

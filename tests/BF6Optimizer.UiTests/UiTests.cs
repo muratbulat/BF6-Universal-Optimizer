@@ -1,3 +1,4 @@
+using FlaUI.Core.AutomationElements;
 using System.Security.Cryptography;
 using System.Text.Json;
 using FlaUI.Core.Definitions;
@@ -528,7 +529,15 @@ public class SystemPageTests
     {
         using var app = new AppHarness();
         app.Nav("nav.hardware");
-        app.Click("ui.rescan");
+        Assert.False(string.IsNullOrEmpty(app.Selected("field.Gpus")), "Control: GPU unreadable before rescan");
+        Assert.False(string.IsNullOrEmpty(app.Selected("field.Displays")), "Control: display unreadable before rescan");
+        for (int i = 0; i < 2; i++)
+        {
+            app.Click("ui.rescan");
+            app.WaitUntil(() => app.Text("hardware.result").StartsWith("Detection finished"), "rescan result");
+            Assert.False(string.IsNullOrEmpty(app.Selected("field.Gpus")), "Gaming GPU lost after rescan");
+            Assert.False(string.IsNullOrEmpty(app.Selected("field.Displays")), "Gaming display lost after rescan");
+        }
         Assert.Empty(app.LogErrors());
     }
 
